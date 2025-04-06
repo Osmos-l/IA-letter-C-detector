@@ -1,17 +1,22 @@
 import numpy as np
-from perceptron import simple_learning, loss
+import perceptron
 from matrices import data
 
 # Hyper paramètres
-epochs  = 10000         # Nb d'epochs
+    # All
+epochs  = 10            # Nb d'epochs
 w       = np.zeros(25)  # Poids des neuronnes (0 par défaut)
 e       = 0.1           # Taille de la MàJ du poid
 
-loss_before_simple_learning = loss(data, w)
+    # Gradient
+dw      = 0.1           # Perturbation
 
-w = simple_learning(epochs, w, e, data)
+loss_before_simple_learning = perceptron.loss(data, w)
 
-loss_after_simple_learning = loss(data, w)
+#w   = perceptron.simple_learning(epochs, w, e, data)
+w  = perceptron.gradient_perturbation_learn(data, w, e, dw, epochs)
+
+loss_after_simple_learning = perceptron.loss(data, w)
 
 print(f"W: {w}")
 print(f"Loss before: {loss_before_simple_learning}")
