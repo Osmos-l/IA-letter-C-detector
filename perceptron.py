@@ -67,7 +67,7 @@ def gradient_perturbation_learn(data, w, e, dw, epochs):
     
     return w
 
-def simple_learning(epochs, w, e, data): 
+def simple_learn(epochs, w, e, data): 
     for epoch in range(epochs):
         #print(f"Epoch n°{epoch +1}")
 

@@ -13,7 +13,7 @@ dw      = 0.1           # Perturbation
 
 loss_before_simple_learning = perceptron.loss(data, w)
 
-#w   = perceptron.simple_learning(epochs, w, e, data)
+#w   = perceptron.simple_learn(epochs, w, e, data)
 w  = perceptron.gradient_perturbation_learn(data, w, e, dw, epochs)
 
 loss_after_simple_learning = perceptron.loss(data, w)
