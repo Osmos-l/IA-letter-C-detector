@@ -39,38 +39,11 @@ def loss(data, w):
 
     return s / P
 
-# Fonction de calcul du gradient par perturbation
-def gradient(data, w, dw):
-    h = loss(data, w)
-    g = np.zeros(len(w)) 
+# Apprentissage supervisé classique
+def learn(epochs, w, e, data): 
+    loss_before = loss(data, w)
 
-    for i in range(len(w)):
-        wa = w
-        wa[i] = w[i] + dw
-        a = loss(data, wa)
-        g[i] = (a - h) / dw
-
-    return g
-
-# Effectuer un pas de gradient
-def descend(data, w, e, dw):
-    g = gradient(data, w, dw)
-    
-    for i in range(len(w)):
-        w[i] -= e * g[i]
-
-    return w
-
-def gradient_perturbation_learn(data, w, e, dw, epochs):
-    for i in range(epochs):
-        w = descend(data, w, e, dw)
-    
-    return w
-
-def simple_learn(epochs, w, e, data): 
     for epoch in range(epochs):
-        #print(f"Epoch n°{epoch +1}")
-
         for idx, entry in enumerate(data):
             x = np.array(entry['matrix']).flatten()
 
@@ -81,4 +54,8 @@ def simple_learn(epochs, w, e, data):
             for i in range(len(w)):
                 w[i] = w[i] + e * (y - yp) * x[i]
 
-    return w
+    loss_after = loss(data, w)
+
+    print(f"[Simple perceptron] - W: {w}")
+    print(f"Loss before: {loss_before}")
+    print(f"Loss after: {loss_after}")

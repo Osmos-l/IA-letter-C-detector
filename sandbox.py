@@ -1,5 +1,6 @@
 import numpy as np
-import perceptron
+import models.perceptron as perceptron
+import models.pertubation_gradient as perceptron_perturbation_gradient
 from matrices import data
 
 # Hyper paramètres
@@ -11,13 +12,6 @@ e       = 0.1           # Taille de la MàJ du poid
     # Gradient
 dw      = 0.1           # Perturbation
 
-loss_before_simple_learning = perceptron.loss(data, w)
-
-#w   = perceptron.simple_learn(epochs, w, e, data)
-w  = perceptron.gradient_perturbation_learn(data, w, e, dw, epochs)
-
-loss_after_simple_learning = perceptron.loss(data, w)
-
-print(f"W: {w}")
-print(f"Loss before: {loss_before_simple_learning}")
-print(f"Loss after: {loss_after_simple_learning}")
+perceptron.learn(epochs, w.copy(), e, data)
+print("\n")
+perceptron_perturbation_gradient.learn(data, w.copy(), e, dw, epochs)
