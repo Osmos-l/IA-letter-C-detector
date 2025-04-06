@@ -19,6 +19,26 @@ def neurone(w, x):
 
     return sign(s)
 
+# Mesure la distance entre la sortie produite et la sortie désirée pour un exemple
+def cost(x, y, w):
+    yp = neurone(w, x)
+    c  = (y - yp) ** 2
+
+    return c
+
+# Fonction de cacul du coût moyen sur un ensemble d'exemples
+def loss(data, w):
+    P = len(data)
+    s = 0
+
+    for idx, entry in enumerate(data):
+        x = np.array(entry['matrix']).flatten()
+        y = entry['is_c']
+
+        s += cost(x, y, w)
+
+    return s / P
+
 def simple_learning(epochs, w, e, data): 
     for epoch in range(epochs):
         print(f"Epoch n°{epoch +1}")
