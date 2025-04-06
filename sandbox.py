@@ -1,7 +1,7 @@
 import numpy as np
 import models.perceptron as perceptron
 import models.pertubation_gradient as perceptron_perturbation_gradient
-import models.gradient as perceptron_gradient
+import models.partial_derivative_gradient as partial_derivative_gradient
 from matrices import data
 
 # Hyper paramètres
@@ -17,4 +17,4 @@ perceptron.learn(epochs, w.copy(), e, data)
 print("\n")
 perceptron_perturbation_gradient.learn(data, w.copy(), e, dw, epochs)
 print("\n")
-perceptron_gradient.learn(data, w.copy(), e, epochs)
+partial_derivative_gradient.learn(data, w.copy(), e, epochs)

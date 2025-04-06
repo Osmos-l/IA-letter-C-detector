@@ -1,7 +1,7 @@
 import numpy as np
 import models.perceptron as perceptron
 
-# Fonction de calcul du gradient par perturbation
+# Fonction de calcul du gradient, dérivée partielle
 def gradient(x, y, w):
     g = np.zeros(len(w)) 
 
@@ -22,7 +22,7 @@ def descend(data, w, e):
 
     return w
 
-# Apprentissage supervisé par gradient sans perturbation
+# Apprentissage supervisé par gradient, dérivée partielle
 def learn(dataset, w, e, epochs):
     loss_before = perceptron.loss(dataset, w)
 
@@ -32,6 +32,6 @@ def learn(dataset, w, e, epochs):
     
     loss_after = perceptron.loss(dataset, w)
 
-    print(f"[Gradient Perceptron] - W: {w}")
+    print(f"[Partial Derivative Gradient Perceptron] - W: {w}")
     print(f"Loss before: {loss_before}")
     print(f"Loss after: {loss_after}")
